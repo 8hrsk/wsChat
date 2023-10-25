@@ -1,9 +1,9 @@
 const express = require('express');
 const ws = require('ws');
 
-// const wsServer = new ws.Server({ host: '45.87.246.20', port: 8080});
+// const wsServer = new ws.Server({ host: 'ip.ip.ip.ip', port: 8080});
 
-const wsServer = new ws.Server({ port: 8080});
+const wsServer = new ws.Server({ port: 8080}); // local
 
 wsServer.on('listening', () => {
     console.log('listening', wsServer.address());
