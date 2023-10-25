@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         message.appendChild(name);
         message.appendChild(messageText);
 
-        if (author == 'You') name.style.color = '#00ccff';
+        if (author == nickname || author == 'You') name.style.color = '#00ccff';
 
         document.getElementById('messages').appendChild(message);
     }
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('about');
                 const modal = document.getElementById('modal');
                 modal.style.display = 'flex';
+
                 setTimeout(() => {
                     modal.style.display = 'none';
                 }, 2500);
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // newMessage('You', message);
         ws.send(JSON.stringify({
+            author: nickname,
             message
         }));
     });
@@ -87,12 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Connection closed');
     }
 
-    const notificationSound = new Audio('./scr/audio/notification.mp3');
-
     ws.onmessage = (response) => {
         response = JSON.parse(response.data);
         newMessage(response.author, response.message);
+
         if (response.author !== 'You') {
+            const notificationSound = new Audio('./scr/audio/notification.mp3');
             notificationSound.play();
         };
     }

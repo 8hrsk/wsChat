@@ -20,9 +20,9 @@ wsServer.on('connection', (ws) => {
     })
 
     ws.on('message', (data) => {
-        const { message } = JSON.parse(data);
+        const { author, message } = JSON.parse(data);
 
-        console.log(message);
+        console.log(author, message);
         if (message == '') return;
 
         wsServer.clients.forEach((client) => {
@@ -35,7 +35,7 @@ wsServer.on('connection', (ws) => {
                     client.send(data)
                 } else {
                     data = JSON.stringify({
-                        author: 'Anonymous',
+                        author: author,
                         message
                     })
                     client.send(data)
@@ -52,7 +52,7 @@ wsServer.on('connection', (ws) => {
                         obj.messages.shift();
                     }
                     data = JSON.parse(data);
-                    data.author = 'Anonymous';
+                    data.author = author;
                     data = JSON.stringify(data);
                     obj.messages.push(data);
 
