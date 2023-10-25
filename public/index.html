@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="./App.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="./scr/ico.ico" type="image/x-icon">
+</head>
+<body>
+
+
+    <header>
+        <!-- <h1>Chat</h1> -->
+        <div class="navigation">
+            <nav>
+                <a><span class="logo">
+                    <!-- https://www.svgrepo.com/svg/56113/logo -->
+                </span></a>
+                <ul>
+                    <li><a id="reconnect">Reconnect</a></li>
+                    <li><a href="https://github.com/8hrsk">Github</a></li>
+                    <li><a id="about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+    <div class="modalContainer" id="modal">
+        <div class="modal">
+            <div class="modalContent">
+                <h3>
+                    Chat SPA as a pet-project
+                </h3>
+                <p>
+                    You can visit my github by a link in the navigation.
+                    Messages are being transfered with websocket, no data 
+                    is stored on the server. Feel free to use)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="chat">
+            <div class="messages">
+                <!-- <div class="message">
+                    <span class="name">Username</span>
+                    <div class="messageText">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi porro est excepturi optio sunt, consectetur iure ex dicta repudiandae sequi officia, eveniet sed fugiat atque, nihil assumenda eos expedita alias!</p>
+                    </div>
+                </div> -->
+            </div>
+            <div class="sendMessage">
+                <input type="text" placeholder="Type your message here" id="message">
+                <button type="submit" id="send"><span class="sendIcon"></span></button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
