@@ -5,8 +5,8 @@ To start server you have to install npm + NodeJS. Clone repository and use `npm 
 
 Use `npm start` to host local server. To connect press `ctrl` and click the link in the terminal.
 
->**TODO**
->- [ ] Make a domain name.
->- [ ] Add caching of last 100 messages.
->- [ ] Add custon usernames.
->- [ ] Refactor front to Vue.js + SASS/SCSS
+> **TODO**
+> - [ ] Make a domain name.
+> - [ ] Add caching of last 100 messages.
+> - [ ] Add custon usernames.
+> - [ ] Refactor front to Vue.js + SASS/SCSS
