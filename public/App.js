@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    //work network
+    // const ws = new WebSocket('ws://45.87.246.20:8080');
+    //test network
+    const ws = new WebSocket('ws://127.0.0.1:8080');
+
     const nav = document.querySelectorAll('a');
 
     const newMessage = ( author, userMessage ) => {
@@ -14,12 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
         name.classList.add('name');
         name.innerText = author;
 
-        if (author == 'You') name.style.color = '#00ccff';
-
         message.appendChild(name);
         message.appendChild(messageText);
 
-        document.querySelector('.messages').appendChild(message);
+        if (author == 'You') name.style.color = '#00ccff';
+
+        document.getElementById('messages').appendChild(message);
     }
 
     nav.forEach((navItem) => {
@@ -70,12 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key == 'Enter') sendButton.click();
     })
 
-
-    //work network
-    // const ws = new WebSocket('ws://ip.ip.ip.ip:8080');
-    //test local network
-    const ws = new WebSocket('ws://localhost:8080');
-
     ws.onerror = (e) => {
         console.log(e);
     }
@@ -88,9 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Connection closed');
     }
 
+    const notificationSound = new Audio('./scr/audio/notification.mp3');
+
     ws.onmessage = (response) => {
         response = JSON.parse(response.data);
         newMessage(response.author, response.message);
+        if (response.author !== 'You') {
+            notificationSound.play();
+        };
     }
 
     const messages = document.querySelector('.messages');

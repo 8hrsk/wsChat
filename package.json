@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js --ignore lastMEssages.json"
   },
-  "author": "",
+  "nodemonConfig": {
+    "ignore": ["*.json"]
+  },
+  "author": "8hrsk",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",

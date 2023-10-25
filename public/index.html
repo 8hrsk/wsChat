@@ -5,12 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
+    <script src="./navigation.js" defer></script>
     <script src="./App.js"></script>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/burger.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <link rel="shortcut icon" href="./scr/ico.ico" type="image/x-icon">
 </head>
 <body>
 
+    <div class="burgerMenuContainer" id="burger">
+        <div class="burgerMenuNav">
+            <h3>Settings</h3>
+            <a><span class="menuClose" id="menuClose"></span></a>
+        </div>
+        <div class="nick">
+            <input type="text" placeholder="Nickname" class="nickname" id="nickname">
+            <button id="changeNickname" class="change">Change nickname</button>
+        </div>
+        <ul>
+            <li><a>Volume</a></li>
+        </ul>
+    </div>
 
     <header>
         <!-- <h1>Chat</h1> -->
@@ -23,10 +38,11 @@
                     <li><a id="reconnect">Reconnect</a></li>
                     <li><a href="https://github.com/8hrsk">Github</a></li>
                     <li><a id="about">About</a></li>
+                    <li><a id="settings">Settings</a></li>
                 </ul>
+                <a><span class="menu" id="menu"></span></a>
             </nav>
         </div>
-
     </header>
 
     <div class="modalContainer" id="modal">
@@ -46,13 +62,8 @@
 
     <main>
         <div class="chat">
-            <div class="messages">
-                <!-- <div class="message">
-                    <span class="name">Username</span>
-                    <div class="messageText">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi porro est excepturi optio sunt, consectetur iure ex dicta repudiandae sequi officia, eveniet sed fugiat atque, nihil assumenda eos expedita alias!</p>
-                    </div>
-                </div> -->
+            <div class="messages" id="messages">
+
             </div>
             <div class="sendMessage">
                 <input type="text" placeholder="Type your message here" id="message">

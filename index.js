@@ -1,17 +1,24 @@
 const express = require('express');
 const ws = require('ws');
+const fs = require('fs');
 
-// const wsServer = new ws.Server({ host: 'ip.ip.ip.ip', port: 8080});
+// const wsServer = new ws.Server({ host: '45.87.246.20', port: 8080});
 
-const wsServer = new ws.Server({ port: 8080}); // local
+const wsServer = new ws.Server({ port: 8080});
 
 wsServer.on('listening', () => {
     console.log('listening', wsServer.address());
 })
 
 wsServer.on('connection', (ws) => {
-    console.log('connection');
-    
+    console.log('new connection');
+
+    const lastMessages = JSON.parse(fs.readFileSync('./lastMEssages.json', 'utf8'));
+
+    lastMessages.messages.forEach((message) => {
+        ws.send(message);
+    })
+
     ws.on('message', (data) => {
         const { message } = JSON.parse(data);
 
@@ -34,6 +41,24 @@ wsServer.on('connection', (ws) => {
                     client.send(data)
                 }
             }
+
+            fs.readFile('./lastMEssages.json', 'utf8', (err, rawdata) => {
+                if (err){
+                    console.log(err);
+                } else {
+                    let obj = JSON.parse(rawdata);
+
+                    if (obj.messages.length > 100) {
+                        obj.messages.shift();
+                    }
+                    data = JSON.parse(data);
+                    data.author = 'Anonymous';
+                    data = JSON.stringify(data);
+                    obj.messages.push(data);
+
+                    let json = JSON.stringify(obj);
+                    fs.writeFile('./lastMEssages.json', json, 'utf8', (err) => {if (err) return console.log(err)});
+            }});
         })
     });
 });
@@ -45,6 +70,7 @@ wsServer.on('err', (err) => {
 const app = express();
 const port = 3000;
 const path = require('path');
+const { json } = require('express');
 
 
 app.use(express.static('public'));
@@ -54,5 +80,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://45.87.246.20:${port}`);
+    console.log(`Example app listening at http://localhost:${port}`);
 })
