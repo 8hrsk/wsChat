@@ -72,9 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //work network
-    // const ws = new WebSocket('ws://45.87.246.20:8080');
-    //test network
-    const ws = new WebSocket('ws://127.0.0.1:8080');
+    // const ws = new WebSocket('ws://ip.ip.ip.ip:8080');
+    //test local network
+    const ws = new WebSocket('ws://localhost:8080');
 
     ws.onerror = (e) => {
         console.log(e);
