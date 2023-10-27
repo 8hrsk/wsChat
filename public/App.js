@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     //work network
-    // const ws = new WebSocket('ws://45.87.246.20:8080');
+    const ws = new WebSocket('ws://45.87.246.20:8080');
     //test network
-    const ws = new WebSocket('ws://127.0.0.1:8080');
+    // const ws = new WebSocket('ws://127.0.0.1:8080');
 
     const nav = document.querySelectorAll('a');
 
+    const messages = document.getElementById('messages'); // useb below
+
     const newMessage = ( author, userMessage ) => {
+        const messageContainer = document.createElement('div');
         const message = document.createElement('div');
         message.classList.add('message');
 
@@ -22,9 +25,20 @@ document.addEventListener('DOMContentLoaded', () => {
         message.appendChild(name);
         message.appendChild(messageText);
 
-        if (author == nickname || author == 'You') name.style.color = '#00ccff';
+        if (author == nickname || author == 'You') {
+            name.style.color = '#00ccff';
+            messageContainer.classList.add('your');
 
-        document.getElementById('messages').appendChild(message);
+            messageContainer.appendChild(message);
+            messages.appendChild(messageContainer);
+        } else {
+            messageContainer.classList.add('other');
+
+            messageContainer.appendChild(message);
+            messages.appendChild(messageContainer);
+        }
+
+        // messages.appendChild(message);
     }
 
     nav.forEach((navItem) => {
@@ -64,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const message = messageInput.value;
         messageInput.value = '';
 
-        if (message == '') return;
+        if (message == '' || message.length >= 500) return;
 
         // newMessage('You', message);
         ws.send(JSON.stringify({
@@ -98,8 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
             notificationSound.play();
         };
     }
-
-    const messages = document.querySelector('.messages');
 
     new MutationObserver(() => {
         const lastMessage = messages.lastElementChild;

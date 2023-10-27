@@ -40,3 +40,9 @@ navigation.closeNav.addEventListener('click', () => {
     navigation.openNav.style.display = 'block';
 })
 
+document.addEventListener('keydown', (e) => {
+    if (e.key == 'Escape') {
+        menu.style.display = 'none';
+        // navigation.openNav.style.display = 'block';  
+    }
+})
