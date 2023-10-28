@@ -5,7 +5,7 @@ To start server you have to install npm + NodeJS. Clone repository and use `npm 
 
 Use `npm start` to host local server. To connect press `ctrl` and click the link in the terminal.
 
-You can visit [my website](http://chat.8hoursking.ru) and see it online
+You can visit [my website](https://chat.8hoursking.ru) and see it online
 
 ## TODO
 - [x] Make a domain name.
@@ -20,3 +20,4 @@ You can visit [my website](http://chat.8hoursking.ru) and see it online
 - [ ] Try to make small file sharing (pics and GIFs).
 - [ ] Make a Config.json file for better start experience.
 - [x] Add ans ssl-sertificate.
+- [ ] Refactor all JS to TS
