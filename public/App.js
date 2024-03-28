@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     //work network
-    const ws = new WebSocket('ws://45.87.246.20:8080');
+    const ws = new WebSocket('websocket');
     //test network
     // const ws = new WebSocket('ws://127.0.0.1:8080');
 
