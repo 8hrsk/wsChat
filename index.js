@@ -2,7 +2,7 @@ const express = require('express');
 const ws = require('ws');
 const fs = require('fs');
 
-const wsServer = new ws.Server({ host: '45.87.246.20', port: 8080});
+const wsServer = new ws.Server({ host: 'websocket', port: 8080});
 
 // const wsServer = new ws.Server({ host: '127.0.0.1', port: 8080});
 
